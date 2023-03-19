@@ -8,6 +8,15 @@ class GoogleSuggestions extends Component{
        
         this.setState({inputvalue:event.target.value})
     }
+    onarrow=(id)=>{
+        let {suggestionsList}=this.props
+        suggestionsList.map(eachItem=>{
+            if(eachItem.id === id)
+            this.setState({inputvalue:eachItem.suggestion})
+
+        })
+        console.log(id)
+    }
     render(){
         const {suggestionsList} = this.props
         const {inputvalue} = this.state
@@ -26,7 +35,7 @@ class GoogleSuggestions extends Component{
                     <input value={inputvalue} onChange={this.inputChange} type="search" className="searchInput" name="" id="" placeholder="Search Google" />
                 </div>
                 <ul>
-                {updatedsuggestionsList.map((eachItem)=><SuggestionItem suggestion={eachItem.suggestion} id={eachItem.id} key={eachItem.id}/>)}
+                {updatedsuggestionsList.map((eachItem)=><SuggestionItem suggestion={eachItem.suggestion} onarrow={this.onarrow} id={eachItem.id} key={eachItem.id}/>)}
 
                 </ul>
                   
